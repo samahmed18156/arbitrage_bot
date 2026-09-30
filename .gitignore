@@ -1,6 +1,6 @@
 target/
 out/
 cache/
-config.toml
+/bot/config.toml
 .env
 broadcast/
