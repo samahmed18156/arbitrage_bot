@@ -1,0 +1,17 @@
+[package]
+name = "arb-bot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+alloy = { version = "1", features = ["essentials"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "signal"] }
+futures = "0.3"
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+anyhow = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[profile.release]
+opt-level = 2

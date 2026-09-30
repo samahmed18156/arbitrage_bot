@@ -1,0 +1,33 @@
+# Copy to config.toml and edit.  Secrets (PRIVATE_KEY) go in the environment, NOT here.
+
+rpc_url    = "https://base-rpc.publicnode.com"      # free public RPC; a free Alchemy/QuickNode/Infura key gives better limits
+vault      = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"   # Balancer V2 Vault (0% flash-loan fee)
+base_token = "0x4200000000000000000000000000000000000006"   # WETH - the token we borrow & profit in
+# contract = "0xYourDeployedFlashArb"            # leave commented out for SCAN-ONLY mode (no key, no gas, no risk)
+
+poll_ms              = 1000     # how often to check for a new block
+dry_run              = true     # true = simulate only, never send a transaction
+min_net_profit_eth   = 0.00005  # profit AFTER gas must exceed this
+max_loan_eth         = 5.0      # hard cap on flash-loan size
+slippage_safety_bps  = 0        # shave this much off expected profit when setting on-chain minProfit (0 = use 50% of expected)
+
+# Quote tokens to look for (paired against base_token)
+tokens = [
+  "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", # USDC
+  "0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf", # cbBTC
+  "0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb", # DAI
+  "0x940181a94A35A4569E4529A3CDfB74e38FD98631", # AERO
+  "0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA", # USDbC
+  "0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22", # cbETH
+]
+
+# Verified on Base. Add more V2-style forks (same getReserves/swap interface, 0.30% fee).
+[[dex]]
+name    = "uniswap_v2"
+factory = "0x8909Dc15e40173Ff4699343b6eB8132c65e18eC6"
+fee_bps = 30
+
+[[dex]]
+name    = "sushiswap_v2"
+factory = "0x71524B4f93c58fcbF659783284E38825f0622859"
+fee_bps = 30
